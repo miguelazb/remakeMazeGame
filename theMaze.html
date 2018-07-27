@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The Maze</title>
+	<link href="https://fonts.googleapis.com/css?family=Oswald:600|Ubuntu+Condensed" rel="stylesheet">
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		body{
+			background: #000;
+		}
+		.contenedor{
+			width: 800px;
+			height: 582px;
+			margin: 10px auto;
+		}
+		.todo{
+			width:100%;
+			height:100%;
+			position: static;
+			border: none;
+			overflow:hidden;
+			z-index: 1;
+		}
+
+		.sc0, .sc1, .sc2, .sc3, .scf{
+			width:100%;
+			height: 100%;
+			position: relative;
+			z-index: 1;
+		}
+
+		/*-- -- --MENU-- -- --*/
+		.sc0{
+			width: 716px;
+			height: 504px;
+			margin: 50px auto;
+			border-radius:15px;
+			background: #00ffff;
+			z-index: 1;
+		}
+		.sc0 .dtitulo{
+			padding-top: 60px;
+			text-align: center;	
+		}
+		.sc0 .titulo {
+			font-size: 100px;
+			font-family: 'Ubuntu Condensed', Arial, Sans-serif;
+			color: #00ffff;
+			text-shadow: ;
+			text-shadow: -2px 0 #000066, 0 2px #000066, 2px 0 #000066, 0 -2px #000066, 
+						 2px -2px #000066, -2px 2px #000066, 2px 2px #000066, -2px -2px #000066,
+						 2px -5px 2px #000066;
+		}
+		.sc0 .texto {
+			font-family: 'Oswald', Arial, Sans-serif;
+			text-align: center;
+			font-size: 28px;
+			line-height: 50px;
+		}
+		.sc0 .texto h2{
+			font-size: 40px;
+		}
+		.sc0 .sound{
+			font-family: 'Oswald', Arial, Sans-serif;
+			text-decoration:italic;
+			text-align: center;
+			font-size: 16px;
+			margin-top: 20px;
+		}
+		.sc0 .dboton{
+			text-align: center;
+		}
+		.sc0 .dboton .btn{
+			margin-top: 15px;
+			padding: 10px 8px 10px 19px;
+			font-family: 'Oswald', Arial, Sans-serif;
+			font-size: 30px;
+			background: #000;
+			color: #fff;
+			outline: none;
+			text-align: center;
+			border: none;
+			letter-spacing: 15px;
+			z-index: 3;
+		}
+
+		/*-- -- --LVL 1-- -- --*/
+		.sc1 .c1 {
+			width: 228px;
+			height: 528px;
+			background: #00ffff;
+			margin: 40px auto;
+		}
+		.sc1 .c2 {
+			position: absolute;
+			background: #0ff;
+			width: 466px;
+			height: 40px;
+			top: 0;
+			left: 285px;
+			z-index: 5;
+		}
+		.sc1 .cf{
+			position: absolute;
+			right:0;
+			height: 100%;
+			width: 78px;
+			background: #f00;
+			z-index: 15;
+		}
+
+		/*-- -- --LVL 2-- -- --*/
+		.sc2 .c1{
+			position:relative;
+			margin: 40px 0 0 80px;
+			width: 670px;
+			height: 50px;
+			background: #0ff;
+		}
+		.sc2 .c2{
+			position: absolute;
+			width: 62px;
+			height: 180px;
+			background: #0ff;
+			z-index: 5;
+		}
+		.sc2 .c3{
+			position: absolute;
+			width:670px;
+			height:56px;
+			background: #0ff;
+			bottom:0;
+			z-index:5;
+		}
+		.sc2 .c4{
+			position:absolute;
+			width:60px;
+			right:0;
+			height:180px;
+			background: #0ff;
+			z-index:5;
+		}
+		.sc2 .c5{
+			position:absolute;
+			width:668px;
+			height:52px;
+			background: #0ff;
+			right:0;
+			bottom:0;
+			z-index:5;
+		}
+		.sc2 .c6{
+			position:absolute;
+			width:60px;
+			height:170px;
+			background: #0ff;
+			z-index:5;
+		}
+		.sc2 .c7{
+			position:absolute;
+			width:668px;
+			height:45px;
+			background: #0ff;
+			bottom:0;
+			z-index:5;
+		}
+		.sc2 .c8{
+			position:absolute;
+			width:128px;
+			height:152px;
+			background: #0ff;
+			right:0;
+			z-index:5;
+		}
+		.sc2 .c9{
+			position:absolute;
+			width:666px;
+			height:32px;
+			background: #0ff;
+			bottom:0;
+			right:0;
+			z-index:5;
+		}
+		.sc2 .cf{
+			position:absolute;
+			width:80px;
+			height:32px;
+			background: #f00;
+			z-index:15;
+		}
+
+		/*-- -- --LVL 3-- -- --*/
+		.sc3 .c1{
+			position: absolute;	
+			width:524px;
+			height:38px;
+			bottom:11px;
+			left:84px;
+			background: #0ff;
+			z-index: 5;
+		}
+		.sc3 .c2{
+			position: absolute;	
+			width:33px;
+			height:114px;
+			right:0;
+			bottom:0;
+			background: #0ff;
+			z-index:5;
+		}
+		.sc3 .c3{
+			position:absolute;	
+			width:524px;
+			height:44px;
+			right:0;
+			background: #0ff;
+			z-index:5;
+		}
+		.sc3 .c4{
+			position:absolute;	
+			width:40px;
+			height:220px;
+			bottom:0;
+			background: #0ff;
+			z-index:5;
+		}
+		.sc3 .c5{
+			position:absolute;	
+			width:275px;
+			height:33px;
+			background: #0ff;
+			z-index:5;
+		}
+		.sc3 .c6{
+			position:absolute;	
+			width:294px;
+			height:10px;
+			background: #0ff;	
+			z-index:5;	
+		}
+		.sc3 .c7{
+			position:absolute;	
+			width:298px;
+			height:10px;
+			background: #0ff;
+			z-index:5;		
+		}
+		.sc3 .c8{
+			position:absolute;	
+			width:11px;
+			height:59px;
+			right:0;
+			bottom:0;
+			background: #0ff;
+			z-index:5;
+		}
+		.sc3 .c9{
+			position:absolute;	
+			width:37px;
+			height:10px;
+			right:0;
+			background: #0ff;
+			z-index:10;
+		}
+		.sc3 .c10{
+			position:absolute;	
+			width:10px;
+			height:34px;
+			bottom:0;
+			background: #0ff;
+			z-index:10;
+		}
+		.sc3 .c11{
+			position:absolute;	
+			width:36px;
+			height:12px;
+			background: #0ff;
+			z-index:10;
+		}
+		.sc3 .c12{
+			position:absolute;	
+			width:12px;
+			height:100px;
+			right:0;
+			bottom:0;
+			background: #0ff;
+			z-index:10;
+		}
+		.sc3 .cf{
+			position:absolute;	
+			width:47px;
+			height:74px;
+			left:-16px;
+			background: #0ff;
+			background: #f00;	
+			z-index:15;
+		}
+
+
+		/*.sc0{display:none;}*/
+		.sc1{display:none;}
+		.sc2{display:none;}
+		.sc3{display:none;}
+		.scf{display:none;}
+	</style>
+	<script src="../../jQuery/jquery.min.js"></script>
+</head>
+<body>
+	<div class="contenedor">
+		<div class="todo">
+			<div class="sc0" id="sc0">
+				<div class="dtitulo">
+					<h1 class="titulo">The Maze</h1>
+				</div>
+				<div class="texto">
+					<h2>Test your skills!</h2>
+					<p>Try to reach the goal without touching the walls</p>
+					<p>How steady is your hand?</p>
+					<p>Let's find out! Try and beat all our four levels!</p>
+				</div>
+				<div class="sound">
+					<p><i>Sound effects will help</i></p>
+				</div>
+				<div class="dboton">
+					<button class="btn" id="btnPlay">Play</button>
+				</div>
+			</div>
+			<div class="sc1" id="sc1">
+				<div class="c1"></div>
+				<div class="c2">
+					<div class="cf"></div>
+				</div>
+			</div>
+			<div class="sc2" id="sc2">
+				<div class="c1">
+					<div class="c2">
+						<div class="c3">
+							<div class="c4">
+								<div class="c5">
+									<div class="c6">
+										<div class="c7">
+											<div class="c8">
+												<div class="c9">
+													<div class="cf"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sc3" id="sc3">
+				<div class="c1">
+					<div class="c2">
+						<div class="c3">
+							<div class="c4">
+								<div class="c5">
+									<div class="c6">
+										<div class="c7">
+											<div class="c8">
+												<div class="c9 end">
+													<div class="c10 end">
+														<div class="c11 end">
+															<div class="c12 end">
+																<div class="cf end"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="scf" id="scf">
+				<img src="http://www.garuyo.com/sites/default/files/styles/large/public/images/2013/06/exorcista-pelicula-datos_123972.jpg_31379.jpg" alt="no carga xd">
+			</div>
+		</div>
+
+	</div>
+	<script>
+		$(document).ready(function(){
+
+			$('#btnPlay').on('click', function(){
+				clear();
+				$('#sc1').css('display','block');
+			});
+
+			// $('#sc1 .cf').on('mouseover', perdio);
+			
+			$('#sc1 .cf').on('mouseover', function(){
+				clear();
+				$('#sc2').css('display','block');
+				// $('.todo').on('mouseover',function(){
+				// 	alert('hola');
+				// });
+				// $('.todo').on('mouseover',perdio);
+			});
+
+			$('#sc2 .cf').on('mouseover', function(){
+				clear();
+				$('#sc3').css('display','block');
+			});
+
+			$('#sc3 .end').on('mouseover', function(){
+				clear();
+				$('#scf').css('display','block');
+			});
+
+			function perdio(){
+				alert('hola');
+				clear();
+				$('.todo').off('mouseover');
+				$('#sc0').css('display','block');
+			}
+
+			// clear();
+
+			function clear(){
+				$('#sc0, #sc1, #sc2, #sc3, #scf').css('display','none');			
+			}
+
+
+		});
+	</script>
+</body>
+</html>
